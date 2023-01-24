@@ -5,21 +5,38 @@ body {
 }
 
 .searches {
-    width: fit-content;
+    width: 30rem;
     display: block;
 
     margin-left: auto;
     margin-right: auto;
 }
 
+.urlSearch{
+    background-color:floralwhite;
+    width: 30rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    padding: 3rem;
+
+    border-radius: 5px;
+}
+
 .searchBar {
-    width: 100%;
+    width: 25rem;
     height: 1.5rem;
 
     border-radius: 5px;
-    border-style: none;
+    border-style: solid;
+    border-width: 1px;
 
-    /*padding-left: 3rem;*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    /* padding-left: 1rem; */
 }
 
 .buttons{

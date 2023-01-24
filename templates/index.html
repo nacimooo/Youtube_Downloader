@@ -3,68 +3,68 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-    <div class="searches">
-        <h1>Youtube to MP3</h1>
-        <h3>Enter URL</h3>
+<div class="searches">
+    <h1>Youtube to MP3</h1>
+    <h3>Enter URL</h3>
+    <div class="urlSearch">
         <form method="POST" action="{{ url_for('home') }}">
-            <input type="text" name="URL" placeholder="     URL" class="searchBar">
+            <input type="text" name="URL" placeholder="URL" class="searchBar">
             <br>
-            <br>
-            <input class="buttons" type="submit" value="Submit"/>
+            <input class="buttons" type="submit" value="Submit" />
         </form>
-
-        <h3>Search For Videos</h3>
-        <input id="search_q" placeholder="     Search" class="searchBar">
-        <br>
-        <br>
-        <button type="button" onclick="getResults()" class="buttons">Search</button>
-        <br>
-        <div id="results">
-        </div>
-
-
     </div>
 
-    <script>
-        /**
-         * searchForMinecraftVideos - searches YouTube for Minecraft videos
-         *
-         * @param   {String}  apiKey  The YouTube API key
-         *
-         * @return  {undefined}
-         */
-        function getResults() {
+    <h3>Search For Videos</h3>
+    <input id="search_q" placeholder="Search" class="searchBar">
+    <br>
+    <button type="button" onclick="getResults()" class="buttons">Search</button>
+    <br>
+    <div id="results">
+    </div>
 
-            // Create a new URL object
-            const url = new URL('https://www.googleapis.com/youtube/v3/search');
 
-            const apiKey = 'AIzaSyAbnRXLoOq2u_LLA5-X_SwI4mzsmoi6CLo'
-            const search = document.getElementById('search_q').value;
+</div>
 
-            // Set the parameters to search for
-            let params = {
-                part: 'snippet', // Specifies what info is returned
-                q: search, // The search term
-                key: apiKey, // The YouTube API key
-                type: 'video', // Specifies to only return videos
-                maxResults: 10,
-            };
+<script>
+    /**
+     * searchForMinecraftVideos - searches YouTube for Minecraft videos
+     *
+     * @param   {String}  apiKey  The YouTube API key
+     *
+     * @return  {undefined}
+     */
+    function getResults() {
 
-            // Append each parameter to the URL
-            Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+        // Create a new URL object
+        const url = new URL('https://www.googleapis.com/youtube/v3/search');
 
-            // Fetch the URL and parse the response as JSON
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    // For each item returned, log the video URL to the console
-                    document.getElementById("results").innerHTML = ''
-                    data.items.forEach(item => {
-                        document.getElementById("results").innerHTML += `${item.snippet.title} <br>`
-                        document.getElementById("results").innerHTML += `https://www.youtube.com/watch?v=${item.id.videoId} <br>`;
-                        document.getElementById("results").innerHTML += `${item.snippet.channelTitle} <br> <br>`;
-                    });
+        const apiKey = 'AIzaSyAbnRXLoOq2u_LLA5-X_SwI4mzsmoi6CLo'
+        const search = document.getElementById('search_q').value;
+
+        // Set the parameters to search for
+        let params = {
+            part: 'snippet', // Specifies what info is returned
+            q: search, // The search term
+            key: apiKey, // The YouTube API key
+            type: 'video', // Specifies to only return videos
+            maxResults: 10,
+        };
+
+        // Append each parameter to the URL
+        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+
+        // Fetch the URL and parse the response as JSON
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                // For each item returned, log the video URL to the console
+                document.getElementById("results").innerHTML = ''
+                data.items.forEach(item => {
+                    document.getElementById("results").innerHTML += `${item.snippet.title} <br>`
+                    document.getElementById("results").innerHTML += `https://www.youtube.com/watch?v=${item.id.videoId} <br>`;
+                    document.getElementById("results").innerHTML += `${item.snippet.channelTitle} <br> <br>`;
                 });
-        }
-    </script>
+            });
+    }
+</script>
 {% endblock %}
