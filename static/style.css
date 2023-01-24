@@ -1,7 +1,7 @@
 body {
     font-family: "Arial Narrow", sans-serif;
     color: white;
-    background-color: #2a2a2a;
+    background-color: #1a1d49;
 }
 
 .searches {
@@ -31,7 +31,7 @@ body {
     margin-right: auto;
 
     /* Looks */
-    background-color: darkorange;
+    background-color: rgb(50, 133, 75);
     color: black;
     border-style: none;
     font-size: 1.1rem;
